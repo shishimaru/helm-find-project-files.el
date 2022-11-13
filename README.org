@@ -1,0 +1,61 @@
+* helm-find-projectile-files.el
+
+Emacs package to extend [[https://github.com/emacs-helm/helm][helm-find]] to quickly find files of the current working
+project managed by Git with less key operation and make your development on
+Emacs better place.
+
+#+attr_html: :width 1200px
+[[file:screenshot.png]]
+
+
+* Dependency
+This package depends on ~helm~ and please install beforehand.
+
+* Usage
+
+** helm-find-project-files
+This command enables to find all files of the current working project.
+
+It searches up the root directory having .git from the current buffer and find
+all files regardless they are managed by Git or not.  Therefore, even if they
+are not managed by Git before you commit, they show up on the helm interface and
+you can quickly open without any cumbersome key operations.
+
+** helm-find-project-files-exclude-paths
+A list of file patterns to ignore by ~find~ command used internally.
+
+The default value is ~'("*/.git/*" "*.elc")~.
+
+If you would like to add exclude other patterns, you should add the new ones to this list.
+For examples of my case, I would like to exclude compiled Python files ~*.pyc~ to be shown up
+and it is good idea to extend this variable like this.
+
+#+BEGIN_SRC lisp
+(add-to-list 'helm-find-project-files-exclude-paths "*/__pycache__*")
+#+END_SRC
+
+* Motivation
+I have used some well-known packages below to quickly find source files of the
+working project, but I found some drawbacks and wanted others.  When I googled,
+some guys also searched the similar feature and I decided to develop this and
+disclose on public.
+
+** helm-find-files, helm-find
+They support to recursively find files only *under* the current working directory.
+They don't find files of the working project managed by Git regardless of the
+location of the current buffer.
+
+I would like to get all of project files without depending on the current location.
+
+** helm-projectile
+This packages was awesome and enabled us to search the project files identified
+by Git or a special file ~.projectile~ put on the project root etc.  However, I
+encountered terrible performance on my Emacs one day and identified the package
+caused it by just loading the package on my .emacs.
+
+I searched the alternative and find some packages, but they didn't satisfied me
+to use in daily development because I had to operate some keys to invoke the
+function such as interaction and it annoyed me.
+
+* License
+Of course, GPLv3
