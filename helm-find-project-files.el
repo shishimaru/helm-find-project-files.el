@@ -43,7 +43,7 @@
         (helm-find-project-files-project-root-p dir (cdr symbols)))))
 
 (defun helm-find-project-files-find-git-dir (dir)
-  "Find the project root directory by recursively searching up the directory tree form DIR."
+  "Find the project root directory by recursively searching up the directory tree from DIR."
   (cond
    ((not dir) "")
    ((string= dir "~") "")
