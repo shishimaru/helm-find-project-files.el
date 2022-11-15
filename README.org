@@ -1,8 +1,7 @@
 * helm-find-projectile-files.el
 
 Emacs package to extend [[https://github.com/emacs-helm/helm][helm-find]] to quickly find files of the current working
-project managed by Git with less key operation and make your development on
-Emacs better place.
+project with less key operation and make your development on Emacs better place.
 
 #+attr_html: :width 1200px
 [[file:screenshot.png]]
@@ -16,15 +15,18 @@ This package depends on ~helm~ and please install beforehand.
 ** helm-find-project-files
 This command enables to find all files of the current working project.
 
-It searches up the root directory having .git from the current buffer and find
-all files regardless they are managed by Git or not.  Therefore, even if they
-are not managed by Git before you commit, they show up on the helm interface and
-you can quickly open without any cumbersome key operations.
+It searches up the root directory having .git or .svn from the current buffer
+and find all files regardless they are managed by Git or not by Linux find
+command.
 
-** helm-find-project-files-exclude-paths
-A list of file patterns to ignore by ~find~ command used internally.
+Therefore, even if they are not managed by the versioning system before you
+commit, they show up on the helm interface and you can quickly open without any
+cumbersome key operations.
 
-The default value is ~'("*/.git/*" "*.elc")~.
+** helm-find-project-files-ignored-paths
+A list of file patterns to ignore with ~find~ command used internally.
+
+The default value is '("*/.git/*" "*.elc").
 
 If you would like to add exclude other patterns, you should add the new ones to this list.
 For examples of my case, I would like to exclude compiled Python files ~*.pyc~ to be shown up
@@ -33,6 +35,12 @@ and it is good idea to extend this variable like this.
 #+BEGIN_SRC lisp
 (add-to-list 'helm-find-project-files-exclude-paths "*/__pycache__*")
 #+END_SRC
+
+** helm-find-project-files-project-root-symbols
+A list of symbols to be used to identify a root directory of a project.
+
+If you put a special file ~.projectroot~ in a directory, it is identified as
+project root directory besides .git and .svn.
 
 * Motivation
 I have used some well-known packages below to quickly find source files of the
