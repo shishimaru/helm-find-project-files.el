@@ -1,4 +1,4 @@
-;;; helm-find-project-files.el --- Extends helm-find to search files of the current working project.  -*- lexical-binding: t; -*-
+;;; helm-find-project-files.el --- Extends helm-find to search project files -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021 Hitoshi Uchida <hitoshi.uchida@gmail.com>
 
