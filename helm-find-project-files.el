@@ -84,6 +84,7 @@
     (if (file-exists-p fpath-absolute)
         (find-file fpath-absolute))))
 
+;;;###autoload
 (defun helm-find-project-files ()
   "Search files of the current working project with helm interface.
 
