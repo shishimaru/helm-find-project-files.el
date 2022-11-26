@@ -43,7 +43,8 @@
         (helm-find-project-files-project-root-p dir (cdr symbols)))))
 
 (defun helm-find-project-files-find-git-dir (dir)
-  "Find the project root directory by recursively searching up the directory tree from DIR."
+  "Find the project root directory by recursively searching up
+the directory tree from DIR."
   (cond
    ((not dir) "")
    ((string= dir "~") "")
@@ -52,7 +53,8 @@
    (t (helm-find-project-files-find-git-dir (directory-file-name (file-name-directory dir))))))
 
 (defun helm-find-project-files-construct-find-option (ignored)
-  "Consruct options of find comamnd to exclude directories and files of IGNORED."
+  "Construct options of find command to exclude directories and
+files of IGNORED."
   (if ignored
       (format "-not -path '%s' %s"
               (car ignored)
@@ -68,7 +70,8 @@
   dir)
 
 (defun helm-find-project-files-find (dir)
-  "Find project files containing DIR and select by helm inteface."
+  "Find project files contained under DIR and select them by helm
+interface."
   (let* ((normalized-dir (helm-find-project-files-normalize-dir dir))
          (ignore-option
           (helm-find-project-files-construct-find-option helm-find-project-files-ignored-paths))
